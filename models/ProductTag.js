@@ -21,7 +21,10 @@ ProductTag.init(
     },
     tag_id : {
       type:DataTypes.INTEGER,
-      // references the TAG models ID
+      references: {
+        model:`tag`,
+        key:`tag_id`,
+      }
     }
   },
   {
