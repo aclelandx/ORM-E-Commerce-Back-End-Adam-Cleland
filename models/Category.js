@@ -8,7 +8,7 @@ class Category extends Model {}
 // defines the specific information that will be saved inside of a category model.
 Category.init(
   {
-    category_id: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey:true,
       autoIncrement:true,
