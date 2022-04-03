@@ -1,3 +1,4 @@
+// import the require packages for the functionality of the application.
 const router = require('express').Router();
 const apiRoutes = require('./api');
 

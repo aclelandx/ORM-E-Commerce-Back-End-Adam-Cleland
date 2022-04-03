@@ -1,4 +1,4 @@
-// import models
+// import all the sequelize models from their file locations so they can be bundled together and exported for easy import.
 const Product = require('./Product');
 const Category = require('./Category');
 const Tag = require('./Tag');

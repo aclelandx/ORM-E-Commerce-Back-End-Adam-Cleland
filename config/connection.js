@@ -1,3 +1,4 @@
+// boiler plate file for the sequelize connection
 require('dotenv').config();
 
 const Sequelize = require('sequelize');
