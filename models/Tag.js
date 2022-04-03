@@ -7,7 +7,7 @@ class Tag extends Model {}
 Tag.init(
   {
     // defines the tag id as the primary key for the tag model, this cannot be null, is an integer, and will autoincrement depending on how many exist in the database.
-    tag_id :{
+    id :{
       type:DataTypes.INTEGER,
       primaryKey:true,
       autoIncrement:true,

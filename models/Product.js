@@ -12,7 +12,7 @@ class Product extends Model {}
 Product.init(
   {
     // defines the id for the product as an integer and cannot be null. This also auto increments, and is defined at the primary key for the model.
-    product_id: {
+    id: {
       type:DataTypes.INTEGER,
       primaryKey:true,
       allowNull:false,
