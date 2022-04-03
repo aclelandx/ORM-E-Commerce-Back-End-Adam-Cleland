@@ -1,32 +1,34 @@
+// improts require npm packages for the functionality of the routes
 const router = require('express').Router();
+// impors the models we will be utilizing from our models folder
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
-// The `/api/products` endpoint
-
-// get all products
+// find all products in the database.
 router.get('/', async (req, res) => {
   try {
     const allProducts = await Product.findAll({
-      include:[{model:Category}, {model:Tag}]
+      include:[{model:Category}, {model:Tag, through:ProductTag}],
     });
     res.status(200).json(allProducts)
+    // catch any error that may occur from the servers side of the application
   } catch (err) { res.status(500).json(err)}
 });
 
-// get one product
+// find one specif product from the database via the ID of the product
 router.get('/:id', async (req, res) => {
   try {
-    const oneProduct = await Product.findByPk(req.params.id,{
-      include: [{model:Category}, {model:Tag}]
+    const oneProduct = await Product.findByPk({
+      where: {id: req.params.id},
+      include: [{model:Category}, {model:Tag, through:ProductTag}]
     });
+    // if the product was not found let the user know.
     !oneProduct ? res.status(404).json({message:`No Product was found with that ID.`})
     : res.status(200).json(oneProduct);
-  } catch (err) {
-    res.status(500).json(err)
-  }
+    // handle any errors that have have occured from the server side of the application.
+  } catch (err) {res.status(500).json(err)}
 });
 
-// create new product
+// create new product // This is part of the starter code from the Boot Camp
 router.post('/', (req, res) => {
   /* req.body should look like this...
     {
@@ -107,8 +109,10 @@ router.delete('/:id', async (req, res) => {
         id: req.params.id,
       },
     });
+    // if the product was not found let the user know.
     !deletedProduct ? res.status(404).json({message:`No Product was found with that ID`})
     : res.json({message:`Product with the ID ${req.params.id} has been deleted`})
+    // catch any errors that may have occured on the server side of the application.
   } catch (err) {res.status(500).json(err)}
 });
 

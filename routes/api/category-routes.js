@@ -1,22 +1,24 @@
 const router = require('express').Router();
 const { Category, Product } = require('../../models');
 
-// The `/api/categories` endpoint
-
+// Find all of the categories that are iside of the database.
 router.get('/', async (req, res) => {
   try {
     const categoryData = await Category.findAll({
       include: [{model:Product}]
     });
     res.status(200).json(categoryData);
+    // catch any error that may occur on the server side of the appliction.
   } catch (err) {res.status(500).json(err)}
 });
 
+// find one specific category inside of the database via the ID
 router.get('/:id', async (req, res) => {
   try {
     const oneCategory = await Category.findByPk(req.params.id, {
       include:[{model:Product}]
     });
+    // if the ID is not found let t
     !oneCategory ? res.status(404).json({message:`No Category found with that ID`})
     : res.status(200),json(oneCategory);
   } catch(err) {res.status(500).json(err)}
