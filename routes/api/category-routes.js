@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Category, Product } = require('../../models');
 
-// Find all of the categories that are iside of the database.
+// Find all of the categories that are inside of the database.
 router.get('/', async (req, res) => {
   try {
     const categoryData = await Category.findAll({
@@ -16,12 +16,12 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const oneCategory = await Category.findOne({
-      where: req.params.id,
+      where: { id: req.params.id },
       include: [{ model: Product }]
     });
-    // if the ID is not found let t
+    // if the ID is not found let the user know
     !oneCategory ? res.status(404).json({ message: `No Category found with that ID` })
-      : res.status(200), json(oneCategory);
+      : res.status(200).json(oneCategory);
   } catch (err) { res.status(500).json(err) }
 });
 
