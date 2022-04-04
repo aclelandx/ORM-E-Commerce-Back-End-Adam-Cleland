@@ -1,6 +1,6 @@
-// improts require npm packages for the functionality of the routes
+// imports require npm packages for the functionality of the routes
 const router = require('express').Router();
-// impors the models we will be utilizing from our models folder
+// imports the models we will be utilizing from our models folder
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // find all products in the database.
@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
   } catch (err) { res.status(500).json(err) }
 });
 
-// find one specif product from the database via the ID of the product
+// find one specific product from the database via the ID of the product
 router.get('/:id', async (req, res) => {
   try {
     const oneProduct = await Product.findOne({
@@ -24,7 +24,7 @@ router.get('/:id', async (req, res) => {
     // if the product was not found let the user know.
     !oneProduct ? res.status(404).json({ message: `No Product was found with that ID.` })
       : res.status(200).json(oneProduct);
-    // handle any errors that have have occured from the server side of the application.
+    // handle any errors my occur from the server side of the application.
   } catch (err) { res.status(500).json(err) }
 });
 

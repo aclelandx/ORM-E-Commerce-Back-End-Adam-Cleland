@@ -34,6 +34,7 @@ Product.init(
     // make the category id reference the category model.
     category_id: {
       type: DataTypes.INTEGER,
+      allowNull: true,
       references: {
         model: `category`,
         key: `id`,
