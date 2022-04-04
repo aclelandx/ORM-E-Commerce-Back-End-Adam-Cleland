@@ -46,8 +46,7 @@ router.put('/:id', async (req, res) => {
       },
     });
     // if the tag cannot be found let the user know.
-    !updateTag ? res.status(404).json({ message: `No tag was found with this ID` })
-      : res.status(200).json(updateTag)
+    !updateTag ? res.status(404).json({ message: `No tag was found with this ID` }) : res.status(200).json({ message: `Tag has been updated, do another Get request` })
     // catch any errors that may occur on the server end of the application.
   } catch (err) { res.status(500).json(err) }
 });
@@ -61,8 +60,7 @@ router.delete('/:id', async (req, res) => {
       },
     });
     // if the tag cannot be found let the user know
-    !deleteTag ? res.status(404).json({ message: `No Tag was found with that ID` })
-      : res.status(200).json({ message: `Tag with the ID of ${req.params.id} has been deleted.` })
+    !deleteTag ? res.status(404).json({ message: `No Tag was found with that ID` }) : res.status(200).json({ message: `Tag with the ID of ${req.params.id} has been deleted.` })
     // catch any errors that may occur on the server end of the application.
   } catch (err) { res.status(500).json(err) }
 });

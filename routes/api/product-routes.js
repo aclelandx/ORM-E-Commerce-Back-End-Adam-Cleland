@@ -53,7 +53,7 @@ router.post('/', (req, res) => {
       // if no product tags, just respond
       res.status(200).json(product);
     })
-    .then((productTagIds) => res.status(200).json(productTagIds))
+    .then((productTagIds) => res.status(200).json({ message: `Product has been created, Do a new get request` }))
     .catch((err) => {
       console.log(err);
       res.status(400).json(err);
@@ -95,7 +95,7 @@ router.put('/:id', (req, res) => {
         ProductTag.bulkCreate(newProductTags),
       ]);
     })
-    .then((updatedProductTags) => res.json(updatedProductTags))
+    .then((updatedProductTags) => res.json({ message: `Product has been updated, do a get request` }))
     .catch((err) => {
       // console.log(err);
       res.status(400).json(err);
