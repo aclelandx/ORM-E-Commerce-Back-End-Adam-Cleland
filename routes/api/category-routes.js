@@ -40,7 +40,7 @@ router.put('/:id', async (req, res) => {
       },
     });
     !updatedCategory ? res.status(404).json({ message: `No Category was found with that ID` })
-      : res.status(200).json(updatedCategory)
+      : res.status(200).json({ message: `Category has been updated, do another get request.` })
   } catch (err) { res.status(500).json(err) }
 });
 
