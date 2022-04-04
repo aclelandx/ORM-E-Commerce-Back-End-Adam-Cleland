@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
       include: [{ model: Product }]
     });
     res.status(200).json(categoryData);
-    // catch any error that may occur on the server side of the appliction.
+    // catch any error that may occur on the server side of the application.
   } catch (err) { res.status(500).json(err) }
 });
 

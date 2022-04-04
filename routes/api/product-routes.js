@@ -112,7 +112,7 @@ router.delete('/:id', async (req, res) => {
     // if the product was not found let the user know.
     !deletedProduct ? res.status(404).json({ message: `No Product was found with that ID` })
       : res.json({ message: `Product with the ID ${req.params.id} has been deleted` })
-    // catch any errors that may have occured on the server side of the application.
+    // catch any errors that may have occurred on the server side of the application.
   } catch (err) { res.status(500).json(err) }
 });
 

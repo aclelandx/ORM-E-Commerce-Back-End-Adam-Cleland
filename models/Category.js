@@ -1,6 +1,6 @@
-// imports the model and the datatypes from the sequelize node module
+// imports the model and the data types from the sequelize node module
 const { Model, DataTypes } = require('sequelize');
-// import the squelize connection from the config file.
+// import the sequelize connection from the config file.
 const sequelize = require('../config/connection.js');
 // creates a new class that is an extenstion of the sequelize model.
 class Category extends Model { }
