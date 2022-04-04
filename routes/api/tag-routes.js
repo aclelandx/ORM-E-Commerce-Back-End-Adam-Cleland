@@ -19,14 +19,13 @@ router.get('/', async (req, res) => {
 // find a specific tag via ID, id is specifed in the Request URL in the :id field.
 router.get('/:id', async (req, res) => {
   try {
-    const oneTag = await Tag.findByPk({
+    const oneTag = await Tag.findOne({
       where: { id: req.params.id },
       // populate additional information.
       include: [{ model: Product, through: ProductTag }]
     });
     // if the tag cannot be found let the user know
-    !oneTag ? res.status(404).json({ message: `No Tag was found with that ID` })
-      : res.status(200).json(oneTag)
+    !oneTag ? res.status(404).json({ message: `No Tag was found with that ID` }) : res.status(200).json(oneTag);
     // catch any errors that may occur on the server end of the application.
   } catch (err) { res.status(500).json(err) }
 });

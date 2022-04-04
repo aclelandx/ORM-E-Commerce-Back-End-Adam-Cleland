@@ -15,7 +15,8 @@ router.get('/', async (req, res) => {
 // find one specific category inside of the database via the ID
 router.get('/:id', async (req, res) => {
   try {
-    const oneCategory = await Category.findByPk(req.params.id, {
+    const oneCategory = await Category.findOne({
+      where: req.params.id,
       include: [{ model: Product }]
     });
     // if the ID is not found let t
@@ -35,7 +36,7 @@ router.put('/:id', async (req, res) => {
   try {
     const updatedCategory = await Category.update(req.body, {
       where: {
-        category_id: req.params.id,
+        id: req.params.id,
       },
     });
     !updatedCategory ? res.status(404).json({ message: `No Category was found with that ID` })
@@ -47,7 +48,7 @@ router.delete('/:id', async (req, res) => {
   try {
     const categoryToDelete = await Category.destroy({
       where: {
-        category_id: req.params.id,
+        id: req.params.id,
       },
     });
     !categoryToDelete ? res.status(404).json({ message: `No Category was Found With that ID` })

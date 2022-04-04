@@ -7,25 +7,25 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 router.get('/', async (req, res) => {
   try {
     const allProducts = await Product.findAll({
-      include:[{model:Category}, {model:Tag, through:ProductTag}],
+      include: [{ model: Category }, { model: Tag, through: ProductTag }],
     });
     res.status(200).json(allProducts)
     // catch any error that may occur from the servers side of the application
-  } catch (err) { res.status(500).json(err)}
+  } catch (err) { res.status(500).json(err) }
 });
 
 // find one specif product from the database via the ID of the product
 router.get('/:id', async (req, res) => {
   try {
-    const oneProduct = await Product.findByPk({
-      where: {id: req.params.id},
-      include: [{model:Category}, {model:Tag, through:ProductTag}]
+    const oneProduct = await Product.findOne({
+      where: { id: req.params.id },
+      include: [{ model: Category }, { model: Tag, through: ProductTag }]
     });
     // if the product was not found let the user know.
-    !oneProduct ? res.status(404).json({message:`No Product was found with that ID.`})
-    : res.status(200).json(oneProduct);
+    !oneProduct ? res.status(404).json({ message: `No Product was found with that ID.` })
+      : res.status(200).json(oneProduct);
     // handle any errors that have have occured from the server side of the application.
-  } catch (err) {res.status(500).json(err)}
+  } catch (err) { res.status(500).json(err) }
 });
 
 // create new product // This is part of the starter code from the Boot Camp
@@ -110,10 +110,10 @@ router.delete('/:id', async (req, res) => {
       },
     });
     // if the product was not found let the user know.
-    !deletedProduct ? res.status(404).json({message:`No Product was found with that ID`})
-    : res.json({message:`Product with the ID ${req.params.id} has been deleted`})
+    !deletedProduct ? res.status(404).json({ message: `No Product was found with that ID` })
+      : res.json({ message: `Product with the ID ${req.params.id} has been deleted` })
     // catch any errors that may have occured on the server side of the application.
-  } catch (err) {res.status(500).json(err)}
+  } catch (err) { res.status(500).json(err) }
 });
 
 module.exports = router;
